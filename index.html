@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets\css\styles.css">
+    <link rel="stylesheet" href="assets\css\bootstrap.min.css">
+    <script src="https://kit.fontawesome.com/eed4d332b4.js" crossorigin="anonymous"></script>
+    <title>Chat</title>
+</head>
+<body>
+
+  <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top" data-bs-theme="dark">
+    <div class="container-fluid px-5">
+      <div class="d-flex">
+        <!-- Logo -->
+        <a class="navbar-brand ms-2" href="#">
+          <span class="fw-bold">Empresa</span>
+        </a>
+      </div>
+  
+      <!-- Botón para colapsar el menú en pantallas pequeñas -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+  
+      <!-- Elementos del menú principal -->
+      <div class="collapse navbar-collapse" id="navbarContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" href="principal.html">Principal</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="preguntas.html">Preguntas</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="manuales.html">Manuales</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="noticias.html">Noticias</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="calendarios.html">Calendario</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="administracion.html">Administración</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="organigrama.html">Organigrama</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="chat.html">Chat</a>
+          </li>
+        </ul>
+  
+        <!-- Barra de búsqueda -->
+        <form class="d-flex" role="search">
+          <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
+          <button class="btn btn-outline-success" type="submit">Buscar</button>
+        </form>
+      </div>
+    </div>
+  </nav>
+      
+  <main class="container-fluid chat-container">
+    <div class="row h-100">
+        <!-- Lista de conversaciones colapsable (visible en móvil y escritorio) -->
+        <div class="col-lg-4 col-md-4 collapse show conversation-collapse" id="conversationsCollapse">
+            <div class="p-2">
+                <input class="form-control mb-3" type="search" placeholder="Buscar conversación">
+                <ul class="list-unstyled">
+                    <!-- Conversaciones -->
+                    <li class="conversation-item" id="conversacion1" onclick="mostrarChat('1')">
+                        <img src="assets/img/persona-1.avif" alt="persona-1">
+                        <div class="conversation-info">
+                            <h6>Alicia López</h6>
+                            <p class="conversation-time">29/05/2024</p>
+                            <p class="text-muted">Hola necesito el word de los requerimientos por favor</p>
+                        </div>
+                    </li>
+                    <li class="conversation-item" id="conversacion2" onclick="mostrarChat('2')">
+                        <img src="assets/img/persona-2.avif" alt="persona-2">
+                        <div class="conversation-info">
+                            <h6>Joaquín Méndez</h6>
+                            <p class="conversation-time">29/05/2024</p>
+                            <p class="text-muted">Hola quería preguntarte por los archivos que quedaste en mandarme el lunes pasado</p>
+                        </div>
+                    </li>
+                    <li class="conversation-item" id="conversacion3" onclick="mostrarChat('3')">
+                        <img src="assets/img/persona-3.avif" alt="persona-3">
+                        <div class="conversation-info">
+                            <h6>Anita Pérez</h6>
+                            <p class="conversation-time">29/05/2024</p>
+                            <p class="text-muted">Buenos días te mando el word con los requerimientos que me pediste ayer</p>
+                        </div>
+                    </li>
+                    <li class="conversation-item" id="conversacion4" onclick="mostrarChat('4')">
+                        <img src="assets/img/persona-4.jpg" alt="persona-4">
+                        <div class="conversation-info">
+                            <h6>Bernard Parraguez</h6>
+                            <p class="conversation-time">29/05/2024</p>
+                            <p class="text-muted">Hola ya terminaste el excel de los productos de esta semana?</p>
+                        </div>
+                    </li>
+                    <li class="conversation-item" id="conversacion5" onclick="mostrarChat('5')">
+                        <img src="assets/img/persona-5.jpg" alt="persona-5">
+                        <div class="conversation-info">
+                            <h6>Ignacio Torres</h6>
+                            <p class="conversation-time">29/05/2024</p>
+                            <p class="text-muted">Mándame las fotos de los productos por favor</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Área del chat -->
+        <div class="col-lg-8 col-md-8 d-flex flex-column">
+            <!-- Cabecera del chat -->
+            <div id="chat-header1" class="chat-header d-flex align-items-center" style="display: flex;">
+                <img src="assets/img/persona-1.avif" alt="persona-1" class="rounded-circle me-2" width="50" height="50">
+                <div>
+                    <h6 class="mb-0">Alicia López</h6>
+                    <small class="text-muted">Activo ahora</small>
+                </div>
+                <div class="ms-auto dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                        Adjuntar
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                        <li><button class="dropdown-item" id="attachImage">Imagen</button></li>
+                        <li><button class="dropdown-item" id="attachVideo">Video</button></li>
+                        <li><button class="dropdown-item" id="attachDocument">Documento</button></li>
+                    </ul>
+                    <input type="file" id="imageInput" style="display:none;" accept="image/*">
+                    <input type="file" id="videoInput" style="display:none;" accept="video/*">
+                    <input type="file" id="documentInput" style="display:none;" accept=".pdf,.doc,.docx,.txt">
+            
+                </div>
+            </div>
+
+            <div id="chat-header2" class="chat-header d-flex align-items-center" style="display: none !important;">
+                <img src="assets/img/persona-2.avif" alt="persona-2" class="rounded-circle me-2" width="50" height="50">
+                <div>
+                    <h6 class="mb-0">Joaquín Méndez</h6>
+                    <small class="text-muted">Activo ahora</small>
+                </div>
+                <div class="ms-auto dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
+                        Adjuntar
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
+                        <li><button class="dropdown-item" id="attachImage">Imagen</button></li>
+                        <li><button class="dropdown-item" id="attachVideo">Video</button></li>
+                        <li><button class="dropdown-item" id="attachDocument">Documento</button></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div id="chat-header3" class="chat-header d-flex align-items-center" style="display: none !important;">
+                <img src="assets/img/persona-3.avif" alt="persona-3" class="rounded-circle me-2" width="50" height="50">
+                <div>
+                    <h6 class="mb-0">Anita Pérez</h6>
+                    <small class="text-muted">Activo ahora</small>
+                </div>
+                <div class="ms-auto dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton3" data-bs-toggle="dropdown" aria-expanded="false">
+                        Adjuntar
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton3">
+                        <li><button class="dropdown-item" id="attachImage">Imagen</button></li>
+                        <li><button class="dropdown-item" id="attachVideo">Video</button></li>
+                        <li><button class="dropdown-item" id="attachDocument">Documento</button></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div id="chat-header4" class="chat-header d-flex align-items-center" style="display: none !important;">
+                <img src="assets/img/persona-4.jpg" alt="persona-4" class="rounded-circle me-2" width="50" height="50">
+                <div>
+                    <h6 class="mb-0">Bernard Parraguez</h6>
+                    <small class="text-muted">Activo ahora</small>
+                </div>
+                <div class="ms-auto dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton4" data-bs-toggle="dropdown" aria-expanded="false">
+                        Adjuntar
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton4">
+                        <li><button class="dropdown-item" id="attachImage">Imagen</button></li>
+                        <li><button class="dropdown-item" id="attachVideo">Video</button></li>
+                        <li><button class="dropdown-item" id="attachDocument">Documento</button></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div id="chat-header5" class="chat-header d-flex align-items-center" style="display: none !important;">
+                <img src="assets/img/persona-5.jpg" alt="persona-5" class="rounded-circle me-2" width="50" height="50">
+                <div>
+                    <h6 class="mb-0">Ignacio Torres</h6>
+                    <small class="text-muted">Activo ahora</small>
+                </div>
+                <div class="ms-auto dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton5" data-bs-toggle="dropdown" aria-expanded="false">
+                        Adjuntar
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton5">
+                        <li><button class="dropdown-item" id="attachImage">Imagen</button></li>
+                        <li><button class="dropdown-item" id="attachVideo">Video</button></li>
+                        <li><button class="dropdown-item" id="attachDocument">Documento</button></li>
+                    </ul>
+                    <input type="file" id="imageInput" style="display:none;" accept="image/*">
+                    <input type="file" id="videoInput" style="display:none;" accept="video/*">
+                    <input type="file" id="documentInput" style="display:none;" accept=".pdf,.doc,.docx,.txt">
+            
+                </div>
+            </div>
+
+            <!-- Cuerpos de chat -->
+            <div id="chatBody1" class="chat-body" style="display: flex;">
+                <div class="chat-message received">
+                    <p>Hola, necesito el word de los requerimientos por favor</p>
+                </div>
+                <div class="chat-message sent">
+                    <p>Claro, ahora te lo mando!</p>
+                </div>
+            </div>
+            <div id="chatBody2" class="chat-body" style="display: none;">
+                <div class="chat-message received">
+                    <p>Hola, quería preguntarte sobre los archivos que quedaste en mandarme.</p>
+                </div>
+                <div class="chat-message sent">
+                    <p>Claro, te los enviaré en breve.</p>
+                </div>
+            </div>
+            <div id="chatBody3" class="chat-body" style="display: none;">
+                <div class="chat-message received">
+                    <p>Buenos días, aquí está el word con los requerimientos que me pediste ayer.</p>
+                </div>
+                <div class="chat-message sent">
+                    <p>Gracias, lo revisaré.</p>
+                </div>
+            </div>
+            <div id="chatBody4" class="chat-body" style="display: none;">
+                <div class="chat-message received">
+                    <p>Hola, ¿ya terminaste el excel de los productos de esta semana?</p>
+                </div>
+                <div class="chat-message sent">
+                    <p>Aún estoy trabajando en eso.</p>
+                </div>
+            </div>
+            <div id="chatBody5" class="chat-body" style="display: none;">
+                <div class="chat-message received">
+                    <p>Mándame las fotos de los productos por favor.</p>
+                </div>
+                <div class="chat-message sent">
+                    <p>Claro, en un momento te las envío.</p>
+                </div>
+            </div>
+
+            <!-- Campo de entrada de mensaje -->
+            <div class="chat-input mt-auto d-flex">
+                <input type="text" id="txtMensaje" class="form-control" placeholder="Escribe un mensaje...">
+                <button class="btn btn-primary" id="btnEnviar">Enviar</button>
+            </div>
+        </div>
+    </div>
+</main>
+
+
+  
+
+    <script src="./assets/js/js_bootstrap/bootstrap.bundle.min.js"></script>
+    <script src="./assets/js/scripts.js"></script>
+</body>
+</html>
